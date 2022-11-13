@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+</head>
+<body>
+{% load static %}
+<h4>{{ song.artist }} - {{ song.title }}</h4>
+<audio controls>
+    <source src="/{{ song.path_to_file }}" type="audio/mp3">
+</audio>
+{% if user.is_authenticated %}
+<form action="{% url 'play:likes' song.id %}" method="POST">
+   {% csrf_token %}
+   <input type="hidden" name="song_id" value="{{ song.id }}">
+   <button type="submit">Add to favorites</button>
+</form>
+{% endif %}
+</body>
+</html>

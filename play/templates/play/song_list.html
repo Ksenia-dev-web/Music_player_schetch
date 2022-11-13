@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SONG LIST</title>
+</head>
+<body>
+{% for song in songs %}
+<ul>
+   <li><a href="{% url 'play:music_file' song.id %}">{{ song.artist }} - {{ song.title }}</a></li>
+   <div>Loved by: {{ song.favorite_by.all|slice:5|unordered_list }}</div>
+</ul>
+{% endfor %}
+</body>
+</html>
